@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3 class="mb-4">Products</h3>
+
+<div class="row">
+{% for p in products %}
+  <div class="col-md-4 mb-4">
+    <div class="card h-100 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ p.name }}</h5>
+        <p class="card-text">{{ p.description }}</p>
+        <p><b>₹ {{ p.price }}</b></p>
+        <p class="text-muted">Stock: {{ p.stock }}</p>
+
+        <form method="post" action="/add-to-cart/">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value="{{ p.id }}">
+          <input class="form-control mb-2" type="number" name="quantity" value="1" min="1">
+          <button class="btn btn-primary w-100">Add to Cart</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}

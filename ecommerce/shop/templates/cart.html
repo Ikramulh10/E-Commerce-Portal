@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Your Cart</h3>
+
+<table class="table table-bordered mt-3">
+<tr class="table-dark">
+  <th>Product</th>
+  <th>Quantity</th>
+  <th>Subtotal</th>
+</tr>
+
+{% for i in items %}
+<tr>
+  <td>{{ i.product.name }}</td>
+  <td>{{ i.quantity }}</td>
+  <td>₹ {{ i.subtotal }}</td>
+</tr>
+{% endfor %}
+</table>
+
+<h4>Total: ₹ {{ total }}</h4>
+
+<a href="/checkout/" class="btn btn-success">Checkout</a>
+{% endblock %}

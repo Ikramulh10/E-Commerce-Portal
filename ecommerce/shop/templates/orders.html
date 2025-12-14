@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>My Orders</h3>
+
+<table class="table table-striped">
+<tr>
+  <th>Order ID</th>
+  <th>Date</th>
+  <th>Total</th>
+</tr>
+
+{% for o in orders %}
+<tr>
+  <td>{{ o.id }}</td>
+  <td>{{ o.order_date }}</td>
+  <td>₹ {{ o.total_price }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
