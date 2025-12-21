@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Your Cart</h3>
+
+<table class="table table-bordered mt-3">
+<tr class="table-dark">
+  <th>Product</th>
+  <th>Quantity</th>
+  <th>Subtotal</th>
+  <th>Action</th>
+</tr>
+
+{% for i in items %}
+<tr>
+  <td>{{ i.product.name }}</td>
+  <td>{{ i.quantity }}</td>
+  <td>₹ {{ i.subtotal }}</td>
+  <td>
+    <a href="{% url 'remove_from_cart' i.product.id %}" class="btn btn-danger btn-sm">
+        Remove
+    </a>
+  </td>
+</tr>
+{% endfor %}
+</table>
+
+<h4>Subtotal: ₹ {{ subtotal }}</h4>
+<h4>Tax (5%): ₹ {{ tax }}</h4>
+<h4><strong>Total: ₹ {{ total }}</strong></h4>
+
+<a href="/checkout/" class="btn btn-success">Checkout</a>
+{% endblock %}
